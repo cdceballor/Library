@@ -1,12 +1,13 @@
 package com.ceiba.biblioteca.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -18,23 +19,33 @@ public class PrestamoModelo  {
     @Id
     private @GeneratedValue int id;
     private String isbn;
-    private String idUser;
+    private String identificacionUsuario;
     private int tipoUsuario; //1 afiliado, 2 empleado de la biblioteca, 3 invitado
-    
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(iso = ISO.DATE)
+    private Date fechaMaximaDevolucion;
+
     public PrestamoModelo() {}
     
-    public PrestamoModelo(String idUser, String isbn, int tipoUsuario) {
+    public PrestamoModelo(String identificacionUsuario, String isbn, int tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
         this.isbn = isbn;
-        this.idUser = idUser;
+        this.identificacionUsuario = identificacionUsuario;
     }
 
-    public String getIdUser() {
-        return this.idUser;
+    public Date getFechaMaximaDevolucion() {
+        return this.fechaMaximaDevolucion;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setFechaMaximaDevolucion(Date fechaMaximaDevolucion) {
+        this.fechaMaximaDevolucion = fechaMaximaDevolucion;
+    }
+    public String getIdentificacionUsuario() {
+        return this.identificacionUsuario;
+    }
+
+    public void setIdentificacionUsuario(String identificacionUsuario) {
+        this.identificacionUsuario = identificacionUsuario;
     }
 
     public String getIsbn() {

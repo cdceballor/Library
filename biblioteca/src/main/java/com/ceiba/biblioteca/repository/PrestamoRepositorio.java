@@ -8,4 +8,6 @@ import com.ceiba.biblioteca.model.PrestamoModelo;
 @Repository
 public interface PrestamoRepositorio extends JpaRepository<PrestamoModelo, Integer> {
 
+    PrestamoModelo findByidentificacionUsuario(String idUser);
+
 }
